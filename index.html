@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>COMP4142: E-payment and Cryptocurrency</title>
+   <link rel="stylesheet" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.teal-green.min.css" /> 
+	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</head>
+<footer>
+		<p>Copyright &copy; 2018 COMP4142 Group 13. All right reserved. </p>
+	</footer>
+<body onload="init()">
+
+	<div id="snackbar"></div>
+	
+	<div id="TopMenuBar">
+		<button id="myBtn"><i class="material-icons">tune</i></button>
+		<button class="item" onclick="SwitchToMerkleRoot()" >Check MerkleRoot</button>
+		<button class="item" onclick="SwitchToVerify()" >Check File</button>
+		<button class="item" onclick="SwitchToSearch()" >Search by ID</button>
+		<button class="item" onclick="SwitchToStamp()" >Stamp File</button>
+	</div>
+	 
+	 <div class="page" id="StampFileFunction">
+			<h1 class="FunctionTitle">Stamp Your File</h1>
+			<form class="FileForm" id="StampFileForm" enctype="multipart/form-data">
+				<input onclick="FileOnChange(0)" type="file" name="sampleFile" id="userFile"/>
+				<p class="FileAreaText">Drag your file here or click in this area.</p>
+				<button id="upload" onclick="StampUserFile()" type="button">Stamp Your File</button>
+			</form>
+			<div class="ShowResult" id="ShowResult1">
+					<h1>Result</h1>
+					<p id="response1"></p>
+				</div>
+	 </div>
+	 
+	 
+	 <div class="page" id="SearchByIDFunction">
+		<h1 class="FunctionTitle">Search By ID</h1>
+		<form id="SearchForm">
+			<p>
+			<input type="text" name="SearchByID" placeholder="  Put Your ID Here..." id="SearchByID" required/>
+			</p>
+			<button  type="button" onclick="UserSearchByID()">Search</button>
+		</form>
+		<div class="ShowResult"  id="ShowResult2">
+				<h1>Result</h1>
+				<p id="response2"></p>
+			</div>
+	 </div>
+	 
+	 <div class="page" id="CheckStampFunction">
+		<h1 class="FunctionTitle"> Verify Your File</h1>
+	  <form class="FileForm" id="CheckStampForm">
+		  <input onclick="FileOnChange(1)" type="file" name="sampleFile" id="sampleFile"/>
+		  <p class="FileAreaText">Drag your file here or click in this area.</p>
+		  <button id="upload" onclick="CheckFile()" type="button">Check Your File</button>
+		 </form>
+		 <div class="ShowResult"  id="ShowResult3">
+				<h1>Result</h1>
+				<p id="response3"></p>
+			</div>
+	 </div>
+
+	 <div class="page" id="CheckMerkleRoot">
+		<h1 class="FunctionTitle">Verify the Merkle Root</h1>
+		<form id="MerkleForm">
+			<div class="space"></div>
+			<label for="FileHash">File Hash:</label> <br/>
+			<input type="text" name="FileHash" id="FileHash" placeholder="  Put Your FileHash Here..." required/><br/>
+			<label for="MerkleRoot">Merkle Root:</label> <br/>
+			<input type="text" name="MerkleRoot" id="MerkleRoot" placeholder="  Put Your MerkleRoot Here..." required/><br/>
+			<label for="userArray">Merkle Tree:</label> <br/>
+			<input type="text" name="Proof" id="userArray" placeholder="  Put Your proof array Here..." required/><br/>
+			<div class="space"></div>
+			<div class="space"></div>
+			<div class="space"></div>
+			<button  type="button" onclick="VerifyUserMerkleRoot()">Search</button>
+		</form>
+		
+		<div id="ShowResult4">
+				<h1>Result</h1>
+				<p id="response4"></p>
+			</div>
+	 </div>
+	 
+	
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+	 <!-- Modal content -->
+	<div class="modal-content">
+	  <div class="modal-header">
+		<span class="close">&times;</span>
+		<h4>Server Setting</h4>
+	  </div>
+	  <div class="modal-body">
+					<label for="ServerIP"> Server IP: </label>
+          <input type="text" id="ServerIP" />
+          <label for="ServerPort"> Server Port: </label>
+          <input type="text" id="ServerPort"/>
+	  </div>
+	  <div class="modal-footer" onclick="changeServerIP()">
+			<button id="UpdateButton" type="button"><h4>Update</h4></button>
+	  </div>
+	</div> 
+	
+</body>
+<script src="js/main.js" async></script>
+</html>
