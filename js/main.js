@@ -48,10 +48,16 @@ function connect(){
 
 function UserSearchByID(){
     var UserInput = document.getElementById('SearchByID');
-    var Server = ServerLocation + '/search';
-    var searchID = UserInput.value;
-    var searchData = JSON.stringify({"searchID":searchID});
-    genRequest(2,Server,'application/json','POST',searchData);
+	var Server = ServerLocation + '/search';
+	var searchID = UserInput.value;
+	if (searchID !=""){
+		var searchData = JSON.stringify({"searchID":searchID});
+		genRequest(2,Server,'application/json','POST',searchData);
+	}
+	else {
+		document.getElementById('snackbar').innerHTML = "Cannot missing ID info when searching";
+		ShowToast();
+	}
 }
 
 function StampUserFile(){
@@ -72,10 +78,17 @@ function VerifyUserMerkleRoot(){
     var merkleRoot = document.getElementById('MerkleRoot');
     var FileHash = document.getElementById('FileHash');
     var proof = document.getElementById('userArray');
-    var Root = merkleRoot.value;
-    var File = FileHash.value;
-    var ProofArray = proof.value.split(',');
-    ProofFileHash(File, ProofArray,Root);
+	var Root = merkleRoot.value;
+	var File = FileHash.value;
+	var ProofArray = proof.value.split(',');
+	console.log(ProofArray);
+	if (File!="" && ProofArray[0] !=""){
+		ProofFileHash(File, ProofArray,Root);
+	}
+	else {
+		document.getElementById('snackbar').innerHTML = "Cannot missing Proof array and File Hash Value";
+		ShowToast();
+	}
 }
 
 function ProofFileHash(Filehash, proof, root){
