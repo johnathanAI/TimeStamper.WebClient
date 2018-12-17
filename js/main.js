@@ -1,6 +1,6 @@
 var ServerIP = "localhost";
 var ServerPort = "3000";
-var ServerLocation =  "http://"+ServerIP+":"+ServerPort;
+var ServerLocation =  "https://"+ServerIP+":"+ServerPort;
 
 function genRequest( POSITION, APIURL, DataType ,MethodType, Sentdata){
     $.ajax({
